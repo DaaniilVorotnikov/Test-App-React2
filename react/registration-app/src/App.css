@@ -21,7 +21,9 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
+  background-image:url(anotherplanet.jpg);
+  background-size: 100% 100%;
 }
 
 .App-link {
@@ -35,4 +37,81 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.container-registration{
+  position: absolute;
+  width: 1000px;
+  height:500px;
+  left: 25%;
+  top: 25%;
+  background-color: beige;
+}
+.name-enter{
+  position: absolute;
+  left:0%;
+  top: 0%;
+  width: 300px;
+  height: auto;
+  background-color: rgb(230, 199, 224);
+}
+
+.registration-title{
+  position: relative;
+
+  font-size: 20px;
+
+  left: 400px;
+}
+
+.down-marker{
+  position: relative;
+  bottom: 40px;
+  right: 80px;
+}
+
+.down-menu{
+  position: relative;
+  bottom: 35px;
+  left: 82px;
+}
+
+.button-position{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.pasport-date{
+  position: absolute;
+  width: 500px;
+  height:300px;
+  left: 300px;
+  top: 0;
+  background-color: rgb(247, 184, 102);
+}
+
+.title-style{
+  position: absolute;
+  left:0%;
+  font-size: 15px;
+  padding-bottom: 40px;
+}
+
+.input-size{
+  position: absolute;
+  height: 30px;
+  width: 400px;
+  right: 0%;
+  font-size: 15px;
+  
+}
+.input-size-2{
+  position: absolute;
+  left: 28%;
+  height: 30px;
+  width: 50px;
+  font-size: 20px;
+
+  text-align: center;
 }
