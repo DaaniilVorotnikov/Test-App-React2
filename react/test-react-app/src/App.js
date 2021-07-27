@@ -32,7 +32,6 @@ function App() {
       title,
       id: Date.now(),
       complited: false
-
     }]))
   }
 
