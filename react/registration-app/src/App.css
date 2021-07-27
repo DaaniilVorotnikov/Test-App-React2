@@ -42,9 +42,9 @@
 .container-registration{
   position: absolute;
   width: 1000px;
-  height:500px;
+  height:700px;
   left: 25%;
-  top: 25%;
+  top: 15%;
   background-color: beige;
 }
 .name-enter{
@@ -85,15 +85,18 @@
 .pasport-date{
   position: absolute;
   width: 500px;
-  height:300px;
+  height: auto;
+  min-height:400px;
   left: 300px;
   top: 0;
   background-color: rgb(247, 184, 102);
+  padding-top: 15px;
+  padding-left: 15px;
 }
 
 .title-style{
   position: absolute;
-  left:0%;
+  left:5px;
   font-size: 15px;
   padding-bottom: 40px;
 }
@@ -108,10 +111,14 @@
 }
 .input-size-2{
   position: absolute;
-  left: 28%;
+  left: 30%;
   height: 30px;
-  width: 50px;
-  font-size: 20px;
+  width: 100px;
+  font-size: 15px;
 
   text-align: center;
+}
+.error-massage-size{
+  font-size: 10px;
+  color:red;
 }
