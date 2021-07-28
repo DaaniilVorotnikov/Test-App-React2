@@ -122,3 +122,15 @@
   font-size: 10px;
   color:red;
 }
+
+.error-massage-size2{
+  position: absolute;
+  left: 30%;
+  bottom: 25px;
+  font-size: 10px;
+  width: 100px;
+  height: 20px;
+  color:red;
+ 
+  
+}

@@ -9,7 +9,7 @@ function ContainerReg (){
   const nameCheck ={
     nameData:{
     name: {required:true, maxLength: 15, pattern:/[А-Яа-я]{3}/},
-    age: {required:true, min:14, max: 150}
+    age: {required:true, maxLength: 10, pattern:/[0-9._%+-]{3}/}
     },
     passportData:{
       seria: {required:true, maxLength: 4, pattern:/[0-9]{3}/ },
@@ -23,7 +23,7 @@ function ContainerReg (){
   const messages = {
     messageNamesDate:{ 
      names: 'Обязательное поле: должно включать в себя кириллицу и содержать не более 15 символов!!!',
-     olds:'Обязательное поле(некорректные данные)!!!'
+     olds:'Обязательное поле не более 10ти символов в формате ДД.ММ.ГГГГ !!!'
   },
     messagePasport:{
       series: 'Обязательное поле не более 4х символов, без пробелов!!!',
