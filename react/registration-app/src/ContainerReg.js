@@ -6,10 +6,20 @@ import MainDate from './MainDate';
 
 function ContainerReg (){
 
+   const city =  `https://api.cdek.ru/v2/location/cities/?country_codes=RU,TR`;
+   console.log(city);
+  
+  const cityList = ['Москва', 'Санкт-Петербург', 'Казань', 'Новосибирск', 'Екатеринбург'];
+
   const nameCheck ={
     nameData:{
-    name: {required:true, maxLength: 15, pattern:/[А-Яа-я]{3}/},
-    age: {required:true, maxLength: 10, pattern:/[0-9._%+-]{3}/}
+    name: {required:true, maxLength: 15, pattern:/[А-Яа-я]{3}/}
+    },
+    date:{
+    day:   {required:true, min: 0, max: 31,  maxLength: 2},
+    month: {required:true, min: 0, max: 12, maxLength: 2},
+    year1: {required:true, min: 1900, max: 2007, maxLength: 4, pattern:/[0-9]{3}/},
+    year2: {required:true, min: 1900, max: 2021, maxLength: 4, pattern:/[0-9]{3}/}
     },
     passportData:{
       seria: {required:true, maxLength: 4, pattern:/[0-9]{3}/ },
@@ -22,8 +32,14 @@ function ContainerReg (){
 
   const messages = {
     messageNamesDate:{ 
-     names: 'Обязательное поле: должно включать в себя кириллицу и содержать не более 15 символов!!!',
-     olds:'Обязательное поле не более 10ти символов в формате ДД.ММ.ГГГГ !!!'
+     names: 'Обязательное поле: должно включать в себя кириллицу и содержать не более 15 символов!!!'
+  
+  },
+  dateMessages:{
+     day: 'Обязательное поле: в месяце 31 день!!!',
+     month: 'Обязательное поле: в году 12 месяцев!!!',
+     year: 'Обязательное поле:  Некорректная дата!!!'
+     
   },
     messagePasport:{
       series: 'Обязательное поле не более 4х символов, без пробелов!!!',
@@ -38,7 +54,7 @@ function ContainerReg (){
       <div className="App">
       <header className="App-header">
       <div className="container-registration">
-      <MainDate messages={messages} nameCheck={nameCheck}/>
+      <MainDate messages={messages} nameCheck={nameCheck} list={cityList}/>
       </div>
    </header>
    </div>
