@@ -1,29 +1,33 @@
-import './App.css';
-import React, {useState, useEffect, useRef, useMemo} from 'react';
+import React,{useEffect, useState} from 'react';
 
+function useLgger(value){
+  useEffect(()=>{
+    console.log('Value change')
+  }, [value])
+}
+
+function useInput(initialValue){
+  const [value, setValue] = useState(initialValue)
+
+  const onChange = event => {
+    setValue(event.target.value)
+  }
+  return{
+    value, onChange
+  }
+
+}
 
 function App() {
 
-  const [counter, setCounter] = useState(0);
+const input = useInput('')
 
-  const [colored, setColored] = useState(false);
-
-  const styles ={
-    color: colored ? 'gold' : 'black'
-  }
-
- 
+useLgger(input.value)
 
   return (
     <div>
-
-      <h1 style={styles}>Счетчик: {counter}</h1>
-      <button onClick={()=> setCounter(prevCounter => prevCounter + 1)} className="btn btn-success">Добавить</button>
-      <button onClick={()=> setCounter(prevCounter => prevCounter - 1)} className="btn btn-danger">Убрать</button>
-      <button onClick={()=> setColored(prevCounter => !prevCounter)} className="btn btn-danger">Позолотить счетчик</button>
-
-
-
+      <input type="text" {...input}/>
+      <h1> {input.value} </h1>
     </div>
   );
 }

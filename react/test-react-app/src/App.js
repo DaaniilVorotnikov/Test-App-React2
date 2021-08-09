@@ -38,7 +38,7 @@ function App() {
   return (
     <Context.Provider value={{ RemoveDo }}>
     <div className='wrapper'>
-      <h1>Tutorial </h1>
+      <h1>List</h1>
       <AddMessage onCreate={addMessage} />
       {does.length ? <List dos={does} onBet={betDo}/>: <p>No messages</p>}
     </div>

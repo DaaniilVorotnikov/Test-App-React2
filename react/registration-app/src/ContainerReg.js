@@ -2,14 +2,14 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainDate from './MainDate';
+import Cities from './Cities.json';
 
 
 function ContainerReg (){
 
-   const city =  `https://api.cdek.ru/v2/location/cities/?country_codes=RU,TR`;
-   console.log(city);
   
-  const cityList = ['Москва', 'Санкт-Петербург', 'Казань', 'Новосибирск', 'Екатеринбург'];
+  const cityList = Cities.map((Cities) => Cities.name) 
+  const gender = ['Мужской', 'Женский']
 
   const nameCheck ={
     nameData:{
@@ -51,13 +51,15 @@ function ContainerReg (){
   }
 
     return( 
+
       <div className="App">
       <header className="App-header">
       <div className="container-registration">
-      <MainDate messages={messages} nameCheck={nameCheck} list={cityList}/>
+      <MainDate messages={messages} nameCheck={nameCheck} list={cityList} gender={gender}/>
       </div>
    </header>
    </div>
+   
     );
  
   }

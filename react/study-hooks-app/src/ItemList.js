@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useState, useEffect, useRef, useMemo} from 'react'
 
 export default function ItemList({getItems}){
 
     const [items, setItems] = useState([]) 
 
     useEffect( () => {
+    
+    const newItems = getItems()
+    setItems(newItems)
 
     }, [getItems])
 

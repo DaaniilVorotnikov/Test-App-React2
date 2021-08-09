@@ -4,38 +4,51 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useForm} from "react-hook-form";
 
 
-function Reload(){
- return window.location.reload();
-}
 
+function MainDate({nameCheck, messages, list, gender}) {
 
-
-function MainDate(props) {
-
-    const colorblack = {color:"black"};
-    const nameCheck = props.nameCheck; 
-    const messages = props.messages;
-
-    const {register, handleSubmit, formState:{errors},  watch} = useForm( {mode:'onBlur'});
+    const colorblack = {color:"black"}; 
+   
+    let placeholder;
+          
+    const {register, handleSubmit, formState:{errors},  watch, setValue } = useForm( {mode:'onBlur'});
     const onSubmit = data => console.log('Отправлено', data);
 
- 
      let yearsB = watch('yearsB', ' ');
      let yearsG = watch('yearsG', ' ');
-    
-     const list = props.list;
-     console.log(list)
-
-
      const minus = yearsG - yearsB;
 
+     const yearNow = 2021;
+     const age = yearNow - yearsB;
 
-    if (yearsB.length == 4 && yearsG.length == 4 && minus != 14 && minus != 21 && minus != 45){
-      const errorText = 'Паспортные данные не валидны!'
-      alert(errorText)
-      Reload(); 
-    }
+     console.log(age)
+     console.log(minus)
+
+     function message(){
+
+      placeholder = 'Паспорт недействителен!!!'
+      setValue('yearsB', '', { shouldValidate: true })
+      setValue('yearsG', '', { shouldValidate: true })
     
+    }
+
+   
+   if ( yearsB.length == 4 && yearsG.length == 4 && minus != 14 && minus != 20 && minus != 45 ){
+
+    message()
+
+    }
+   else if(yearsB.length == 4 && yearsG.length == 4 && age >= 20 && minus == 14){
+
+    message()
+
+   }
+   else if(yearsB.length == 4 && yearsG.length == 4 && age >= 45 && minus == 20){
+
+    message()
+    
+   }
+  
 
     return (
 
@@ -64,8 +77,8 @@ function MainDate(props) {
             <input className="input-size-3"{...register('dayB', nameCheck.date.day)} />
             {errors.monthB && <h6 className="error-massage-size3">{messages.dateMessages.month}</h6>}
             <input className="input-size-3"{...register('monthB', nameCheck.date.month)} />
-            {errors.yearsB && <h6 className="error-massage-size3">{messages.dateMessages.year}</h6>}
-            <input className="input-size-3"{...register('yearsB', nameCheck.date.year1)}/>
+            {errors.yearsB && <h6 className="error-massage-size3">{messages.dateMessages.year} </h6> || <h6 className="error-massage-size3">{placeholder} </h6>}
+            <input className="input-size-3"{...register('yearsB', nameCheck.date.year1)} />
            
             <br/> 
             <br/> 
@@ -73,20 +86,24 @@ function MainDate(props) {
 
             <h6 style={colorblack}> <span className="down-marker">Пол:</span> 
             <select className="down-menu" name="gender"  {...register}>
-            <option value="female">Мужской</option>
-            <option value="male">Женский</option>
+            {
+             gender.map((gender, index) => <option key={index} value="gender">{gender}</option>)
+            }
             </select>
+
             </h6>
 
             <h6 style={colorblack}> Место рождения:
-            <select className="down-menu2" name="gender"  {...register}>
+            <select className="down-menu2" name="city"  {...register}>
             {
 
             list.map((city, index) => <option key={index} value="city">{city}</option>)
 
             }
             </select>
+
             </h6>
+
             </div>
     
 
@@ -110,8 +127,8 @@ function MainDate(props) {
             {errors.dayG && <h6 className="error-massage-size4">{messages.dateMessages.day}</h6>}
             <input className="input-size-3"{...register('dayG', nameCheck.date.day)} />
             {errors.monthG && <h6 className="error-massage-size4">{messages.dateMessages.month}</h6>}
-            <input className="input-size-3"{...register('monthG', nameCheck.date.month)} />
-            {errors.yearsG && <h6 className="error-massage-size4">{messages.dateMessages.year}</h6>}
+            <input  className="input-size-3"{...register('monthG', nameCheck.date.month)} />
+            {errors.yearsG && <h6 className="error-massage-size4">{messages.dateMessages.year}</h6>|| <h6 className="error-massage-size3">{placeholder} </h6>}
             <input className="input-size-3"{...register('yearsG', nameCheck.date.year2)} />
              <br/> 
              <br/>
@@ -137,4 +154,4 @@ function MainDate(props) {
             
             );
        }
-export default MainDate;
+       export default MainDate;

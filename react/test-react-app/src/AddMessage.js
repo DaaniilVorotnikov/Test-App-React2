@@ -7,21 +7,35 @@ const styles ={
     }
 }
 
+function useInputValue(defaultValue = ''){
+    const[value, setValue] = useState(defaultValue)
+
+    return{
+        bind: {
+        value,
+        onChange: event => setValue(event.target.value)
+        },
+        clear: () => setValue(''),
+        value: () => value
+    }
+}
+
 function AddMessage({onCreate}){
-    const[value, setValue] = useState('');
+    const input = useInputValue('');
     
     function submitHandler(event){
         event.preventDefault()
 
-        if(value.trim()) {
-            onCreate(value)
-            setValue('')
+        if(input.value().trim()) {
+            onCreate(input.value())
+            input.clear()
+           // setValue('')
         }
     }
 
     return(
         <form style={styles.formStyle} onSubmit={submitHandler}>
-            <input value={value} onChange={event => setValue(event.target.value)} />
+            <input {...input.bind} />
             <button type="submit">Add message!</button>
         </form>
     )
