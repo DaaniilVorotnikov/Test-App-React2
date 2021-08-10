@@ -7,12 +7,52 @@ import {useForm} from "react-hook-form";
 
 function MainDate({nameCheck, messages, list, gender}) {
 
+  function createCustomer(m) {
+
+    console.log(m);
+
+   const first_name = m.name;
+   const last_name = m.lastname;
+   const patronymic = m.patronymic;
+   const birth_day = m.dayB; 
+   const birth_month = m.monthB; 
+   const  birth_year = m.yearsB; 
+   const  gender = m.gender; 
+   const  city = m.city;
+   const pasport_seria = m.pasportSeria; 
+   const pasport_number = m.pasportNumber; 
+   const day_issue = m.dayG; 
+   const month_issue = m.monthG; 
+   const year_issue = m.yearsG; 
+   const been_issumed = m.beenIssume; 
+   const department_id = m.departmentId;
+ 
+    fetch(`http://localhost:3001/customers`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({first_name, last_name, patronymic, birth_day, birth_month , birth_year, gender, city, pasport_seria, pasport_number, day_issue , month_issue, year_issue, been_issumed, department_id}),
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        console.log(data);
+      });
+  }
+
+
     const colorblack = {color:"black"}; 
    
     let placeholder;
           
     const {register, handleSubmit, formState:{errors},  watch, setValue } = useForm( {mode:'onBlur'});
-    const onSubmit = data => console.log('Отправлено', data);
+    const onSubmit = meassage => createCustomer(meassage);
+
+
+
+
 
      let yearsB = watch('yearsB', ' ');
      let yearsG = watch('yearsG', ' ');
@@ -20,9 +60,6 @@ function MainDate({nameCheck, messages, list, gender}) {
 
      const yearNow = 2021;
      const age = yearNow - yearsB;
-
-     console.log(age)
-     console.log(minus)
 
      function message(){
 
