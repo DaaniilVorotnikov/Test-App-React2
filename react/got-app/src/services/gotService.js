@@ -14,34 +14,35 @@ export default class GotService {
         return await res.json();
     }
 
-    getAllBooks() {
+    getAllBooks = () => {
         return this.getResource(`/books/`);
     }
     
-    getBook(id) {
+    getBook = (id) => {
         return this.getResource(`/books/${id}/`);
     }
     
-    async getAllCharacters() {
+    getAllCharacters = async () => {
         const res = await this.getResource(`/characters?page=5&pageSize=10`);
         return res.map(this._transformCharacter) 
     }
     
-    async  getCharacter (id) {
+    getCharacter = async (id) => {
        const character = await this.getResource(`/characters/${id}`);
        return this._transformCharacter(character);
     }
     
-    getAllHouses() {
+    getAllHouses = () =>  {
         return this.getResource(`/houses/`);
     }
     
-    getHouse(id) {
+    getHouse = (id) =>  {
         return this.getResource(`/houses/${id}/`);
     }
 
-    _transformCharacter(char){
+    _transformCharacter = (char) => {
      return{
+        id: char.url,
         name:char.name,
         gender: char.gender,
         born: char.born,

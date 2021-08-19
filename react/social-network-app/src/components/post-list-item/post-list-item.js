@@ -29,7 +29,7 @@ export default class PostListItem extends React.Component{
                 <button type = "button"
                  className = "btn-star btn-sm" 
                  onClick={onToggleImportant}
-                 >
+                >
                     <i className = "bi bi-star"> </i>
                 </button>
                 <button 

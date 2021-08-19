@@ -3,7 +3,7 @@
     100% { opacity: 0 }
   }
 .ldio-8ecd4hsnjve div {
-    left: 94px;
+    left: 220px;
     top: 48px;
     position: absolute;
     animation: ldio-8ecd4hsnjve linear 1s infinite;
@@ -77,15 +77,14 @@
     width: 200px;
     height: 200px;
     display: inline-block;
-    overflow: hidden;
-    background: #f1f2f3;
+    overflow: hidden;  
   }
   .ldio-8ecd4hsnjve {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
+     margin: 0 auto;
     transform: translateZ(0) scale(1);
     backface-visibility: hidden;
-    transform-origin: 0 0; /* see note above */
   }
-  .ldio-8ecd4hsnjve div { box-sizing: content-box; }
+  .ldio-8ecd4hsnjve div {box-sizing: content-box; }
