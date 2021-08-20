@@ -2,12 +2,11 @@ import React from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import CharacterPage from '../characterPage';
 import ErrorMessage from '../errorMessage';
-import ItemList from '../itemList';
-import CharDetails from '../charDetails';
 import GotService from '../../services/gotService';
-
+import{BrowserRouter as Router, Route} from 'react-router-dom';
+import  {CharacterPage,BookPage,HousePage} from  '../pages';
+import './app.css';
 
 class App extends React.Component{
 
@@ -47,7 +46,8 @@ class App extends React.Component{
 
 
     return (
-        <> 
+        <Router>
+        <div className="app"> 
             <Container>
                 <Header />
             </Container>
@@ -62,28 +62,12 @@ class App extends React.Component{
                     {element}
                     </Col>
                 </Row>
-                <CharacterPage/>
-               <Row>
-                <Col md='6'>
-                <ItemList  
-                onCharSelected = {this.onCharSelected}
-                getData = {this.gotService.getAllBooks}/>
-                </Col>
-                <Col md='6'>
-                <CharDetails charId = {this.state.selectedChar}/>
-                </Col>
-                </Row>
-                { /*
-                <Row>
-                <Col md='6'>
-                <ItemList  onCharSelected = {this.onCharSelected}/>
-                </Col>
-                <Col md='6'>
-                <CharDetails charId = {this.state.selectedChar}/>
-                </Col>
-              </Row> */  }
+                <Route path='/characters' component={CharacterPage}/>
+                <Route path='/books' component={BookPage}/>
+                <Route path='/houses' component={HousePage}/>
             </Container>
-        </>
+            </div>
+            </Router>
     );
 }
 }
