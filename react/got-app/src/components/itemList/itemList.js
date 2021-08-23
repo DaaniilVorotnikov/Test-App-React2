@@ -1,49 +1,34 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import './itemList.css';
 import Spinner from '../spinner/spinner';
+import PropTypes from 'prop-types';
 
 
-export default class ItemList extends Component {
+export default function ItemList ({getData, onItemSelected, renderItem}) {
 
-    state = {
-        itemList: null
-    }
+    const [itemList, setItemList] = useState([]);
 
-    componentDidMount(){
-        
-        const { getData } = this.props;
-
-
+    useEffect(() => {
         getData()
-            .then( (itemList) => {
-                this.setState({
-                itemList
-                })
-            })
-    }
+        .then( (data) => {
+            setItemList(data);
+        })
+    }, [])
+
         
     
 
-        renderItems(arr){
+function    renderItems(arr){
             return arr.map((item) => {
 
-                const {renderItem} = this.props
+               const {id} = item;
 
-
-                const {id} = item;
-
-
-                
                const label = renderItem(item);
-
-              
-
-
                 return (
                 <li
                 key={id} 
                 className="list-group-item"
-                onClick={() => this.props.onItemSelected(id)}
+                onClick={() =>onItemSelected(id)}
                >
                 {label}
                </li>
@@ -52,23 +37,20 @@ export default class ItemList extends Component {
         }
 
 
-    render() {
+            if (!itemList) {
+                return <Spinner/>
+            }
 
-        const { itemList } = this.state;
-        
-       
-        
+            const items = renderItems(itemList);
 
-        if (!itemList) {
-            return <Spinner/>
-        }
-
-        const items = this.renderItems(itemList);
-
-        return (
-            <ul className="item-list list-group">
-                {items}
-            </ul>
-        );
+            return (
+                <ul className="item-list list-group">
+                    {items}
+                </ul>
+            );
     }
+
+ItemList.propTypes ={
+    onItemSelected: PropTypes.func
 }
+

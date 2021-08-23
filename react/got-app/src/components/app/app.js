@@ -5,7 +5,7 @@ import RandomChar from '../randomChar';
 import ErrorMessage from '../errorMessage';
 import GotService from '../../services/gotService';
 import{BrowserRouter as Router, Route} from 'react-router-dom';
-import  {CharacterPage,BookPage,HousePage} from  '../pages';
+import  {CharacterPage, BookPage, HousePage, BooksItem} from  '../pages';
 import './app.css';
 
 class App extends React.Component{
@@ -37,7 +37,7 @@ class App extends React.Component{
 
         const {hideRandomchar} = this.state;
 
-        const element =  hideRandomchar === false ? null : <RandomChar/> ;
+        const element =  hideRandomchar === false ? null : <RandomChar interval={5000}/> ;
         
         if(this.state.error){
             console.log('error');
@@ -63,8 +63,15 @@ class App extends React.Component{
                     </Col>
                 </Row>
                 <Route path='/characters' component={CharacterPage}/>
-                <Route path='/books' component={BookPage}/>
+                <Route path='/books' exact component={BookPage}/>
                 <Route path='/houses' component={HousePage}/>
+                <Route path='/books/:id'  render={
+                    ({match}) => {
+                    const {id} = match.params;
+
+                   return  <BooksItem bookId={id}/>
+                    }
+                }/>
             </Container>
             </div>
             </Router>

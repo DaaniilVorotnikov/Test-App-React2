@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ErrorMessage = () =>{
+const ErrorMessage = () => {
     return <span className="random-block rounded">Something goes wrong</span>
 }
 
