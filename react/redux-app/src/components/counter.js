@@ -9,7 +9,7 @@ const Counter = ({counter, inc, dec, rnd}) => {
         <h1>{counter}</h1>
         <button onClick={dec} className="btn btn-primary">Dec</button>
         <button onClick={inc} className="btn btn-primary">Inc</button>
-        <button onClick={rnd} className="btn btn-primary">RND</button>
+        <button onClick={rnd} className="btn btn-primary">Rnd</button>
       </div>
     );
 }
